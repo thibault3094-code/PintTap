@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PintTap — Prototype v4</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2a2010">
+</head>
+<body>
+<div class="phone" id="phone">
+  <div class="notch"></div>
+
+  <!-- ════════════ HOME ════════════ -->
+  <div id="s-home" class="screen active">
+    <!-- Foam cloud -->
+    <div class="foam-cloud">
+      <svg viewBox="0 0 375 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <ellipse cx="40" cy="52" rx="48" ry="22" fill="var(--foam-c)"/>
+        <ellipse cx="90" cy="44" rx="38" ry="26" fill="var(--foam-c2)"/>
+        <ellipse cx="140" cy="50" rx="44" ry="20" fill="var(--foam-c)"/>
+        <ellipse cx="188" cy="42" rx="42" ry="28" fill="var(--foam-c2)"/>
+        <ellipse cx="240" cy="50" rx="40" ry="20" fill="var(--foam-c)"/>
+        <ellipse cx="292" cy="43" rx="38" ry="26" fill="var(--foam-c2)"/>
+        <ellipse cx="342" cy="50" rx="44" ry="22" fill="var(--foam-c)"/>
+        <rect x="0" y="46" width="375" height="10" fill="var(--foam-c2)"/>
+      </svg>
+    </div>
+    <div class="header">
+      <div class="logo">Pint<span>Tap</span></div>
+      <div class="header-right"><div class="level-badge">⚡ Niv.3 · Houblonneur</div></div>
+    </div>
+    <div class="content">
+      <div class="scan-area" onclick="go('s-scanning')" style="margin-top:4px;">
+        <div style="font-size:34px;">📷</div>
+        <div style="font-size:15px;font-weight:500;color:var(--text);">Scanner une bière</div>
+        <div style="font-size:12px;color:var(--text2);text-align:center;">Prenez en photo l'étiquette<br>pour l'identifier instantanément</div>
+      </div>
+
+      <!-- MERGED: Dégustations + Historique -->
+      <div class="stitle">Mes dégustations</div>
+      <div style="background:var(--bg2);border-radius:var(--r);border:0.5px solid var(--border);">
+        <div class="beer-row" onclick="go('s-result')" style="border-bottom:0.5px solid var(--border);">
+          <div style="font-size:10px;color:var(--text3);width:30px;text-align:center;line-height:1.4;flex-shrink:0;">24<br>avr</div>
+          <div class="beer-emoji" style="font-size:22px;">🍺</div>
+          <div style="flex:1;"><div class="beer-name" style="font-size:13px;">Tripel Karmeliet</div><div class="beer-meta">Bar L'Estaminet · Bruxelles</div>
+          <div style="margin-top:3px;" class="medals"><span class="medal gold" style="font-size:9px;">🥇 WBA 2023</span></div></div>
+          <span style="font-size:13px;">⭐</span>
+        </div>
+        <div class="beer-row" style="border-bottom:0.5px solid var(--border);">
+          <div style="font-size:10px;color:var(--text3);width:30px;text-align:center;line-height:1.4;flex-shrink:0;">21<br>avr</div>
+          <div class="beer-emoji" style="font-size:22px;">🍻</div>
+          <div style="flex:1;"><div class="beer-name" style="font-size:13px;">Weihenstephaner Hefe</div><div class="beer-meta">À la maison</div>
+          <div style="margin-top:3px;" class="medals"><span class="medal gold" style="font-size:9px;">🥇 EBS 2022</span></div></div>
+        </div>
+        <div class="beer-row" style="border-bottom:0.5px solid var(--border);">
+          <div style="font-size:10px;color:var(--text3);width:30px;text-align:center;line-height:1.4;flex-shrink:0;">18<br>avr</div>
+          <div class="beer-emoji" style="font-size:22px;">🍺</div>
+          <div style="flex:1;"><div class="beer-name" style="font-size:13px;">Guinness Draught</div><div class="beer-meta">The Pub · Dublin</div>
+          <div style="margin-top:3px;" class="medals"><span class="medal silver" style="font-size:9px;">🥈 BBC 2022</span></div></div>
+        </div>
+        <div id="hist-more" style="display:none;">
+          <div class="beer-row" style="border-bottom:0.5px solid var(--border);">
+            <div style="font-size:10px;color:var(--text3);width:30px;text-align:center;line-height:1.4;flex-shrink:0;">15<br>avr</div>
+            <div class="beer-emoji" style="font-size:22px;">🍺</div>
+            <div style="flex:1;"><div class="beer-name" style="font-size:13px;">Duvel</div><div class="beer-meta">Dîner chez des amis</div></div>
+            <span style="font-size:13px;">⭐</span>
+          </div>
+          <div class="beer-row" style="border-bottom:0.5px solid var(--border);">
+            <div style="font-size:10px;color:var(--text3);width:30px;text-align:center;line-height:1.4;flex-shrink:0;">12<br>avr</div>
+            <div class="beer-emoji" style="font-size:22px;">🍻</div>
+            <div style="flex:1;"><div class="beer-name" style="font-size:13px;">Leffe Blonde</div><div class="beer-meta">Brasserie du Centre · Lyon</div></div>
+          </div>
+          <div class="beer-row">
+            <div style="font-size:10px;color:var(--text3);width:30px;text-align:center;line-height:1.4;flex-shrink:0;">8<br>avr</div>
+            <div class="beer-emoji" style="font-size:22px;">🍺</div>
+            <div style="flex:1;"><div class="beer-name" style="font-size:13px;">Chimay Bleue</div><div class="beer-meta">Cave à bières · Marseille</div></div>
+          </div>
+        </div>
+        <div class="voir-plus" id="hist-btn" onclick="toggleHist()">Voir plus ↓</div>
+      </div>
+
+      <div class="stitle" style="margin-top:14px;">Palmarès mondial</div>
+      <div class="card">
+        <div class="beer-row">
+          <div class="beer-emoji">🏆</div>
+          <div style="flex:1;"><div class="beer-name">Westvleteren 12</div><div class="beer-meta">Belgique · Quadrupel · 10.2%</div>
+          <div style="margin-top:4px;" class="medals"><span class="medal gold">🥇 WBA 2024</span><span class="medal gold">🥇 BAC France</span></div></div>
+        </div>
+      </div>
+      <div class="spacer"></div>
+    </div>
+    <div class="nav-bar">
+      <button class="nav-item active" onclick="go('s-home')"><div class="nav-icon-wrap"><span class="nav-icon">🏠</span></div><span class="nav-label">Accueil</span></button>
+      <button class="nav-item" onclick="go('s-catalogue')"><div class="nav-icon-wrap"><span class="nav-icon">📖</span></div><span class="nav-label">Catalogue</span></button>
+      <button class="nav-item" onclick="go('s-community')"><div class="nav-icon-wrap"><span class="nav-icon">🍴</span></div><span class="nav-label">Recettes</span></button>
+      <button class="nav-item" onclick="go('s-badges')"><div class="nav-icon-wrap"><span class="nav-icon">🎖️</span></div><span class="nav-label">Badges</span></button>
+      <button class="nav-item" onclick="go('s-profile')"><div class="nav-icon-wrap"><span class="nav-icon">👤</span></div><span class="nav-label">Profil</span></button>
+    </div>
+  </div>
+
+  <!-- ════════════ SCANNING ════════════ -->
+  <div id="s-scanning" class="screen">
+    <div class="foam-cloud"><svg viewBox="0 0 375 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><ellipse cx="40" cy="52" rx="48" ry="22" fill="var(--foam-c)"/><ellipse cx="90" cy="44" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="140" cy="50" rx="44" ry="20" fill="var(--foam-c)"/><ellipse cx="188" cy="42" rx="42" ry="28" fill="var(--foam-c2)"/><ellipse cx="240" cy="50" rx="40" ry="20" fill="var(--foam-c)"/><ellipse cx="292" cy="43" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="342" cy="50" rx="44" ry="22" fill="var(--foam-c)"/><rect x="0" y="46" width="375" height="10" fill="var(--foam-c2)"/></svg></div>
+    <div class="header"><button class="back-btn" onclick="go('s-home')">←</button><div class="logo" style="margin-left:6px;">Pint<span>Tap</span> <span style="font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text2);font-weight:400;">Scanner</span></div></div>
+    <div class="content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;">
+      <div class="viewfinder"><div class="vf-c vf-tl"></div><div class="vf-c vf-tr"></div><div class="vf-c vf-bl"></div><div class="vf-c vf-br"></div><div class="scan-lbl">Centrez l'étiquette</div><div style="font-size:46px;">🍺</div></div>
+      <div style="text-align:center;font-size:13px;color:var(--text2);">Bouteille, cannette ou pommeau de pression<br>L'IA reconnaît aussi les médailles sur l'étiquette</div>
+      <button class="cta-btn" style="max-width:260px;" onclick="go('s-analyzing')">📸 Prendre une photo</button>
+      <button class="outline-btn" style="max-width:260px;" onclick="go('s-analyzing')">Depuis la galerie</button>
+    </div>
+    <div class="nav-bar">
+      <button class="nav-item" onclick="go('s-home')"><div class="nav-icon-wrap"><span class="nav-icon">🏠</span></div><span class="nav-label">Accueil</span></button>
+      <button class="nav-item" onclick="go('s-catalogue')"><div class="nav-icon-wrap"><span class="nav-icon">📖</span></div><span class="nav-label">Catalogue</span></button>
+      <button class="nav-item" onclick="go('s-community')"><div class="nav-icon-wrap"><span class="nav-icon">🍴</span></div><span class="nav-label">Recettes</span></button>
+      <button class="nav-item" onclick="go('s-badges')"><div class="nav-icon-wrap"><span class="nav-icon">🎖️</span></div><span class="nav-label">Badges</span></button>
+      <button class="nav-item" onclick="go('s-profile')"><div class="nav-icon-wrap"><span class="nav-icon">👤</span></div><span class="nav-label">Profil</span></button>
+    </div>
+  </div>
+
+  <!-- ════════════ ANALYZING ════════════ -->
+  <div id="s-analyzing" class="screen">
+    <div class="foam-cloud"><svg viewBox="0 0 375 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><ellipse cx="40" cy="52" rx="48" ry="22" fill="var(--foam-c)"/><ellipse cx="90" cy="44" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="188" cy="42" rx="42" ry="28" fill="var(--foam-c2)"/><ellipse cx="292" cy="43" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="342" cy="50" rx="44" ry="22" fill="var(--foam-c)"/><rect x="0" y="46" width="375" height="10" fill="var(--foam-c2)"/></svg></div>
+    <div class="header"><div class="logo">Pint<span>Tap</span></div></div>
+    <div class="content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;">
+      <div style="font-size:54px;">🔍</div>
+      <div style="text-align:center;"><div style="font-size:17px;font-weight:500;color:var(--text);margin-bottom:6px;">Analyse en cours…</div><div style="font-size:13px;color:var(--text2);">Identification de la bière et de ses médailles</div></div>
+      <div style="width:100%;"><div class="pbar-wrap"><div class="pbar" id="pbar"></div></div><div id="pstatus" style="font-size:11px;color:var(--text3);text-align:center;margin-top:7px;">Détection de l'étiquette…</div></div>
+    </div>
+    <div class="nav-bar">
+      <button class="nav-item" onclick="go('s-home')"><div class="nav-icon-wrap"><span class="nav-icon">🏠</span></div><span class="nav-label">Accueil</span></button>
+      <button class="nav-item" onclick="go('s-catalogue')"><div class="nav-icon-wrap"><span class="nav-icon">📖</span></div><span class="nav-label">Catalogue</span></button>
+      <button class="nav-item" onclick="go('s-community')"><div class="nav-icon-wrap"><span class="nav-icon">🍴</span></div><span class="nav-label">Recettes</span></button>
+      <button class="nav-item" onclick="go('s-badges')"><div class="nav-icon-wrap"><span class="nav-icon">🎖️</span></div><span class="nav-label">Badges</span></button>
+      <button class="nav-item" onclick="go('s-profile')"><div class="nav-icon-wrap"><span class="nav-icon">👤</span></div><span class="nav-label">Profil</span></button>
+    </div>
+  </div>
+
+  <!-- ════════════ RESULT ════════════ -->
+  <div id="s-result" class="screen">
+    <div class="foam-cloud"><svg viewBox="0 0 375 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><ellipse cx="40" cy="52" rx="48" ry="22" fill="var(--foam-c)"/><ellipse cx="90" cy="44" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="140" cy="50" rx="44" ry="20" fill="var(--foam-c)"/><ellipse cx="188" cy="42" rx="42" ry="28" fill="var(--foam-c2)"/><ellipse cx="240" cy="50" rx="40" ry="20" fill="var(--foam-c)"/><ellipse cx="292" cy="43" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="342" cy="50" rx="44" ry="22" fill="var(--foam-c)"/><rect x="0" y="46" width="375" height="10" fill="var(--foam-c2)"/></svg></div>
+    <div class="header"><button class="back-btn" onclick="go('s-home')">←</button><div class="logo" style="margin-left:6px;">Résultat</div><div class="header-right"><button style="background:var(--accent-dim);border:0.5px solid var(--border2);color:var(--accent-l);border-radius:var(--r-sm);padding:6px 12px;font-size:11px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;">+ Favoris</button></div></div>
+    <div class="content">
+      <div class="info-card" style="margin-top:6px;">
+        <div style="display:flex;gap:13px;align-items:flex-start;">
+          <div style="font-size:46px;">🍺</div>
+          <div style="flex:1;"><div class="big-name">Tripel Karmeliet</div><div class="origin-text">Brouwerij Bosteels · Buggenhout, Belgique</div>
+          <div class="tags"><span class="tag">Tripel</span><span class="tag">8.4% ABV</span><span class="tag">Blonde</span><span class="tag">33 IBU</span></div></div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-title">Origine</div>
+        <div style="font-size:13px;color:var(--text2);margin-bottom:8px;">📍 Buggenhout, Flandre-Orientale — Belgique</div>
+        <div class="map-mini">
+          <svg viewBox="0 0 340 110" xmlns="http://www.w3.org/2000/svg">
+            <rect width="340" height="110" fill="#1a2510"/>
+            <path d="M20,20 Q60,10 120,15 Q180,8 240,18 Q290,12 330,22 L330,90 Q280,85 230,88 Q170,95 110,88 Q60,92 20,85 Z" fill="#2a3820" stroke="#3a4830" stroke-width="0.5"/>
+            <ellipse cx="185" cy="48" rx="22" ry="16" fill="rgba(192,122,44,0.25)" stroke="rgba(192,122,44,0.5)" stroke-width="1"/>
+            <text x="152" y="68" fill="rgba(255,255,255,0.18)" font-size="8" font-family="sans-serif">FR</text>
+            <text x="218" y="55" fill="rgba(255,255,255,0.18)" font-size="8" font-family="sans-serif">DE</text>
+            <text x="192" y="30" fill="rgba(255,255,255,0.18)" font-size="8" font-family="sans-serif">NL</text>
+            <circle cx="185" cy="48" r="5" fill="#C07A2C"/>
+            <circle cx="185" cy="48" r="9" fill="none" stroke="rgba(192,122,44,0.4)" stroke-width="1.5"/>
+            <circle cx="185" cy="48" r="14" fill="none" stroke="rgba(192,122,44,0.2)" stroke-width="1"><animate attributeName="r" values="9;18;9" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite"/></circle>
+          </svg>
+        </div>
+        <div style="font-size:11px;color:var(--text3);margin-top:5px;text-align:center;">Brasserie fondée en 1791 · 233 ans d'histoire</div>
+      </div>
+      <div class="stitle">Médailles & récompenses</div>
+      <div class="contest-item"><div class="contest-logo">🏆</div><div style="flex:1;"><div class="contest-name">World Beer Awards</div><div class="contest-year">Catégorie Tripel · 2023</div></div><span class="medal gold">🥇 Or</span></div>
+      <div class="contest-item"><div class="contest-logo">🌍</div><div style="flex:1;"><div class="contest-name">Brussels Beer Challenge</div><div class="contest-year">Bière belge d'exception · 2022</div></div><span class="medal gold">🥇 Or</span></div>
+      <div class="contest-item"><div class="contest-logo">🇫🇷</div><div style="flex:1;"><div class="contest-name">BAC France</div><div class="contest-year">Bières blondes fortes · 2023</div></div><span class="medal silver">🥈 Argent</span></div>
+      <div class="info-card" style="margin-top:4px;"><div class="info-title">Description</div><div class="info-text">Brassée avec trois céréales — froment, avoine et orge. Nez complexe de fruits, d'épices et de levure, avec une finale longue et élégante. Référence mondiale du style Tripel.</div></div>
+      <div class="info-card"><div class="info-title">Accompagnements idéaux</div><div class="chips"><span class="chip">Fromages affinés</span><span class="chip">Moules</span><span class="chip">Porc rôti</span><span class="chip">Dessert citron</span></div></div>
+      <div class="info-card"><div class="info-title">Service & dégustation</div><div class="info-text">Servir à 6–8°C dans un verre à calice. Idéale en apéritif ou repas festif. Laisser 1 min après le service.</div></div>
+      <div class="info-card"><div class="info-title">Ordre de dégustation suggéré</div><div class="order-item"><div class="order-num">1</div><div class="order-name">Weihenstephaner (légère)</div></div><div class="order-item"><div class="order-num" style="background:var(--accent-dim);color:var(--accent-l);">2</div><div class="order-name order-active">Tripel Karmeliet ← vous êtes ici</div></div><div class="order-item"><div class="order-num">3</div><div class="order-name">Westvleteren 12 (intense)</div></div></div>
+      <div class="info-card"><div class="info-title">Avis de la communauté</div><div class="review-item"><div class="review-user">Antoine M. 🥇 Ambassadeur</div><div class="review-text">Absolument divine. La complexité aromatique est incroyable pour une bière de cette force.</div></div><div class="review-item"><div class="review-user">Sarah K. ⚡ Houblonneur</div><div class="review-text">Une des meilleures tripels. Parfaite avec un fromage de caractère.</div></div></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="nav-bar">
+      <button class="nav-item active" onclick="go('s-home')"><div class="nav-icon-wrap"><span class="nav-icon">🏠</span></div><span class="nav-label">Accueil</span></button>
+      <button class="nav-item" onclick="go('s-catalogue')"><div class="nav-icon-wrap"><span class="nav-icon">📖</span></div><span class="nav-label">Catalogue</span></button>
+      <button class="nav-item" onclick="go('s-community')"><div class="nav-icon-wrap"><span class="nav-icon">🍴</span></div><span class="nav-label">Recettes</span></button>
+      <button class="nav-item" onclick="go('s-badges')"><div class="nav-icon-wrap"><span class="nav-icon">🎖️</span></div><span class="nav-label">Badges</span></button>
+      <button class="nav-item" onclick="go('s-profile')"><div class="nav-icon-wrap"><span class="nav-icon">👤</span></div><span class="nav-label">Profil</span></button>
+    </div>
+  </div>
+
+  <!-- ════════════ CATALOGUE ════════════ -->
+  <div id="s-catalogue" class="screen">
+    <div class="foam-cloud"><svg viewBox="0 0 375 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><ellipse cx="40" cy="52" rx="48" ry="22" fill="var(--foam-c)"/><ellipse cx="90" cy="44" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="140" cy="50" rx="44" ry="20" fill="var(--foam-c)"/><ellipse cx="188" cy="42" rx="42" ry="28" fill="var(--foam-c2)"/><ellipse cx="240" cy="50" rx="40" ry="20" fill="var(--foam-c)"/><ellipse cx="292" cy="43" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="342" cy="50" rx="44" ry="22" fill="var(--foam-c)"/><rect x="0" y="46" width="375" height="10" fill="var(--foam-c2)"/></svg></div>
+    <div class="header"><div class="logo">Pint<span>Tap</span> <span style="font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text2);font-weight:400;">Catalogue</span></div></div>
+    <div class="content">
+      <div class="search-bar" style="margin-top:4px;"><span style="font-size:14px;">🔍</span><input type="text" placeholder="Rechercher une bière, brasserie, style…"/></div>
+      <div class="filter-row">
+        <button class="filter-chip active">Tous</button>
+        <button class="filter-chip" onclick="filterToggle(this)">🥇 Médaillées</button>
+        <button class="filter-chip" onclick="filterToggle(this)">🇧🇪 Belgique</button>
+        <button class="filter-chip" onclick="filterToggle(this)">🇩🇪 Allemagne</button>
+        <button class="filter-chip" onclick="filterToggle(this)">🇫🇷 France</button>
+        <button class="filter-chip" onclick="filterToggle(this)">IPA</button>
+        <button class="filter-chip" onclick="filterToggle(this)">Stout</button>
+        <button class="filter-chip" onclick="filterToggle(this)">Tripel</button>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div class="stitle" style="margin:0;">12 847 bières référencées</div>
+        <select style="background:var(--bg3);border:0.5px solid var(--border);color:var(--text2);font-size:11px;padding:4px 8px;border-radius:var(--r-sm);font-family:'DM Sans',sans-serif;outline:none;"><option>A–Z</option><option>Médailles</option><option>Pays</option><option>% Alcool</option></select>
+      </div>
+      <div class="card" onclick="go('s-result')"><div class="beer-row"><div class="beer-emoji">🍺</div><div style="flex:1;"><div class="beer-name">Tripel Karmeliet</div><div class="beer-meta">Brouwerij Bosteels · Belgique</div><div style="margin-top:4px;" class="medals"><span class="medal gold">🥇 WBA 2023</span><span class="medal gold">🥇 BBC 2022</span></div></div></div></div>
+      <div class="card"><div class="beer-row"><div class="beer-emoji">🍻</div><div style="flex:1;"><div class="beer-name">Weihenstephaner Hefe</div><div class="beer-meta">Weihenstephan · Allemagne</div><div style="margin-top:4px;" class="medals"><span class="medal gold">🥇 EBS 2022</span></div></div></div></div>
+      <div class="card"><div class="beer-row"><div class="beer-emoji">🍺</div><div style="flex:1;"><div class="beer-name">Westvleteren 12</div><div class="beer-meta">Abbaye St-Sixtus · Belgique</div><div style="margin-top:4px;" class="medals"><span class="medal gold">🥇 WBA 2024</span><span class="medal gold">🥇 BAC</span></div></div></div></div>
+      <div class="card"><div class="beer-row"><div class="beer-emoji">🍺</div><div style="flex:1;"><div class="beer-name">Chimay Bleue</div><div class="beer-meta">Abbaye N.-D. Scourmont · Belgique</div><div style="margin-top:4px;" class="medals"><span class="medal silver">🥈 BBC 2023</span></div></div></div></div>
+      <div style="background:var(--bg2);border-radius:var(--r);border:0.5px solid var(--border);padding:12px 14px;margin-top:4px;"><div style="font-size:12px;font-weight:500;color:var(--text);margin-bottom:4px;">Votre bière est introuvable ?</div><div style="font-size:11px;color:var(--text2);margin-bottom:8px;">Contribuez et gagnez +50 XP en l'ajoutant.</div><button class="cta-btn" style="margin:0;padding:10px;">+ Ajouter une bière</button></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="nav-bar">
+      <button class="nav-item" onclick="go('s-home')"><div class="nav-icon-wrap"><span class="nav-icon">🏠</span></div><span class="nav-label">Accueil</span></button>
+      <button class="nav-item active"><div class="nav-icon-wrap"><span class="nav-icon">📖</span></div><span class="nav-label">Catalogue</span></button>
+      <button class="nav-item" onclick="go('s-community')"><div class="nav-icon-wrap"><span class="nav-icon">🍴</span></div><span class="nav-label">Recettes</span></button>
+      <button class="nav-item" onclick="go('s-badges')"><div class="nav-icon-wrap"><span class="nav-icon">🎖️</span></div><span class="nav-label">Badges</span></button>
+      <button class="nav-item" onclick="go('s-profile')"><div class="nav-icon-wrap"><span class="nav-icon">👤</span></div><span class="nav-label">Profil</span></button>
+    </div>
+  </div>
+
+  <!-- ════════════ COMMUNITY / RECETTES + COCKTAILS ════════════ -->
+  <div id="s-community" class="screen">
+    <div class="foam-cloud"><svg viewBox="0 0 375 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><ellipse cx="40" cy="52" rx="48" ry="22" fill="var(--foam-c)"/><ellipse cx="90" cy="44" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="140" cy="50" rx="44" ry="20" fill="var(--foam-c)"/><ellipse cx="188" cy="42" rx="42" ry="28" fill="var(--foam-c2)"/><ellipse cx="240" cy="50" rx="40" ry="20" fill="var(--foam-c)"/><ellipse cx="292" cy="43" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="342" cy="50" rx="44" ry="22" fill="var(--foam-c)"/><rect x="0" y="46" width="375" height="10" fill="var(--foam-c2)"/></svg></div>
+    <div class="header"><div class="logo">Pint<span>Tap</span> <span style="font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text2);font-weight:400;">Recettes</span></div></div>
+    <div class="content">
+      <!-- Segment: Recettes / Cocktails -->
+      <div class="seg-tabs" style="margin-top:4px;">
+        <button class="seg-tab active" id="tab-food" onclick="switchTab('food')">🍴 Recettes cuisine</button>
+        <button class="seg-tab" id="tab-cocktail" onclick="switchTab('cocktail')">🍹 Cocktails bière</button>
+      </div>
+
+      <!-- FOOD SECTION -->
+      <div id="sec-food">
+        <div class="filter-row">
+          <button class="filter-chip active">Toutes</button>
+          <button class="filter-chip" onclick="filterToggle(this)">Entrées</button>
+          <button class="filter-chip" onclick="filterToggle(this)">Plats</button>
+          <button class="filter-chip" onclick="filterToggle(this)">Desserts</button>
+          <button class="filter-chip" onclick="filterToggle(this)">Marinades</button>
+        </div>
+        <div class="recipe-card"><div class="recipe-img">🥩</div><div class="recipe-title">Carbonnade flamande à la Chimay Bleue</div><div class="recipe-meta">Plat · 2h30 · Difficulté moyenne · par Antoine M. 🥇</div><div style="margin-top:6px;" class="medals"><span class="medal gold" style="font-size:10px;">Bière : Chimay Bleue</span></div></div>
+        <div class="recipe-card"><div class="recipe-img">🍤</div><div class="recipe-title">Tempura de crevettes, beurre blanc à la Tripel Karmeliet</div><div class="recipe-meta">Entrée · 45 min · Facile · par Sarah K. ⚡</div><div style="margin-top:6px;" class="medals"><span class="medal gold" style="font-size:10px;">Bière : Tripel Karmeliet</span></div></div>
+        <div class="recipe-card"><div class="recipe-img">🍮</div><div class="recipe-title">Fondant au chocolat & Stout Guinness</div><div class="recipe-meta">Dessert · 30 min · Facile · par PintTap Chef</div><div style="margin-top:6px;" class="medals"><span class="medal silver" style="font-size:10px;">Bière : Guinness Draught</span></div></div>
+        <div class="recipe-card"><div class="recipe-img">🍗</div><div class="recipe-title">Poulet mariné à la bière de Noël & épices douces</div><div class="recipe-meta">Plat · 3h · Avancé · par Marc D. 🎖️</div></div>
+        <button class="cta-btn" style="margin-top:4px;">+ Partager une recette</button>
+      </div>
+
+      <!-- COCKTAILS SECTION -->
+      <div id="sec-cocktail" style="display:none;">
+        <div class="filter-row">
+          <button class="filter-chip active">Tous</button>
+          <button class="filter-chip" onclick="filterToggle(this)">Frais</button>
+          <button class="filter-chip" onclick="filterToggle(this)">Fruités</button>
+          <button class="filter-chip" onclick="filterToggle(this)">Épicés</button>
+          <button class="filter-chip" onclick="filterToggle(this)">Sans alcool</button>
+        </div>
+        <div class="recipe-card">
+          <div class="recipe-img">🍹</div>
+          <div class="recipe-title">Shandy Citron à la Leffe Blonde</div>
+          <div class="recipe-meta">Rafraîchissant · 2 min · par Sarah K. ⚡</div>
+          <div style="margin-top:6px;display:flex;gap:5px;"><span class="cocktail-tag">🍹 Cocktail</span><span class="medal gold" style="font-size:10px;">Bière : Leffe Blonde</span></div>
+          <div style="margin-top:8px;font-size:12px;color:var(--text2);line-height:1.6;">½ bière blonde · ½ limonade · glaçons · tranche de citron. Mélanger délicatement.</div>
+        </div>
+        <div class="recipe-card">
+          <div class="recipe-img">🍺</div>
+          <div class="recipe-title">Black Velvet — Guinness & Champagne</div>
+          <div class="recipe-meta">Élégant · 3 min · par Antoine M. 🥇</div>
+          <div style="margin-top:6px;display:flex;gap:5px;"><span class="cocktail-tag">🍹 Cocktail</span><span class="medal silver" style="font-size:10px;">Bière : Guinness</span></div>
+          <div style="margin-top:8px;font-size:12px;color:var(--text2);line-height:1.6;">Verser délicatement le champagne brut puis la Guinness par-dessus une cuillère. Ne pas mélanger.</div>
+        </div>
+        <div class="recipe-card">
+          <div class="recipe-img">🌶️</div>
+          <div class="recipe-title">Michelada épicée à la bière mexicaine</div>
+          <div class="recipe-meta">Épicé · 5 min · par Marc D. 🎖️</div>
+          <div style="margin-top:6px;display:flex;gap:5px;"><span class="cocktail-tag">🍹 Cocktail</span></div>
+          <div style="margin-top:8px;font-size:12px;color:var(--text2);line-height:1.6;">Jus de citron vert · tabasco · sauce Worcestershire · sel · bière lager bien froide.</div>
+        </div>
+        <div class="recipe-card">
+          <div class="recipe-img">🫐</div>
+          <div class="recipe-title">Beer Sangria — IPA & fruits rouges</div>
+          <div class="recipe-meta">Fruité · 10 min · Rafraîchissant</div>
+          <div style="margin-top:6px;display:flex;gap:5px;"><span class="cocktail-tag">🍹 Cocktail</span><span class="tag" style="font-size:10px;">IPA</span></div>
+          <div style="margin-top:8px;font-size:12px;color:var(--text2);line-height:1.6;">IPA fruitée · vin rouge léger · framboises · mûres · sucre de canne · menthe fraîche.</div>
+        </div>
+        <button class="cta-btn" style="margin-top:4px;">+ Partager un cocktail</button>
+      </div>
+
+      <div class="spacer"></div>
+    </div>
+    <div class="nav-bar">
+      <button class="nav-item" onclick="go('s-home')"><div class="nav-icon-wrap"><span class="nav-icon">🏠</span></div><span class="nav-label">Accueil</span></button>
+      <button class="nav-item" onclick="go('s-catalogue')"><div class="nav-icon-wrap"><span class="nav-icon">📖</span></div><span class="nav-label">Catalogue</span></button>
+      <button class="nav-item active"><div class="nav-icon-wrap"><span class="nav-icon">🍴</span></div><span class="nav-label">Recettes</span></button>
+      <button class="nav-item" onclick="go('s-badges')"><div class="nav-icon-wrap"><span class="nav-icon">🎖️</span></div><span class="nav-label">Badges</span></button>
+      <button class="nav-item" onclick="go('s-profile')"><div class="nav-icon-wrap"><span class="nav-icon">👤</span></div><span class="nav-label">Profil</span></button>
+    </div>
+  </div>
+
+  <!-- ════════════ BADGES ════════════ -->
+  <div id="s-badges" class="screen">
+    <div class="foam-cloud"><svg viewBox="0 0 375 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><ellipse cx="40" cy="52" rx="48" ry="22" fill="var(--foam-c)"/><ellipse cx="90" cy="44" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="140" cy="50" rx="44" ry="20" fill="var(--foam-c)"/><ellipse cx="188" cy="42" rx="42" ry="28" fill="var(--foam-c2)"/><ellipse cx="240" cy="50" rx="40" ry="20" fill="var(--foam-c)"/><ellipse cx="292" cy="43" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="342" cy="50" rx="44" ry="22" fill="var(--foam-c)"/><rect x="0" y="46" width="375" height="10" fill="var(--foam-c2)"/></svg></div>
+    <div class="header"><div class="logo">Pint<span>Tap</span> <span style="font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text2);font-weight:400;">Badges</span></div></div>
+    <div class="content">
+      <div style="background:var(--bg2);border-radius:var(--r);border:0.5px solid var(--border);padding:14px;margin-bottom:14px;margin-top:4px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--text);">⚡ Niveau 3 — Houblonneur</div><div style="font-size:11px;color:var(--text2);margin-top:2px;">47 bières · prochain niveau à 60</div></div><div style="font-size:12px;color:var(--accent);font-weight:600;">78%</div></div><div class="xp-bar-wrap"><div class="xp-bar" style="width:78%;"></div></div></div>
+      <div class="stitle">Badges débloqués</div>
+      <div class="reward-card"><div class="reward-icon">🌍</div><div style="flex:1;"><div class="reward-name">Globe Trotter</div><div class="reward-desc">Bières de 9 pays différents</div><div class="reward-progress">✅ Débloqué</div></div><div style="font-size:18px;">✨</div></div>
+      <div class="reward-card"><div class="reward-icon">🥇</div><div style="flex:1;"><div class="reward-name">Chasseur de Médailles</div><div class="reward-desc">5 bières primées scannées</div><div class="reward-progress">✅ Débloqué</div></div><div style="font-size:18px;">✨</div></div>
+      <div class="reward-card"><div class="reward-icon">📝</div><div style="flex:1;"><div class="reward-name">Contributeur</div><div class="reward-desc">1 bière ajoutée à la base</div><div class="reward-progress">✅ Débloqué</div></div><div style="font-size:18px;">✨</div></div>
+      <div class="stitle" style="margin-top:8px;">Prochains badges</div>
+      <div class="reward-card"><div class="reward-icon" style="opacity:0.4;">🇧🇪</div><div style="flex:1;"><div class="reward-name">Belge d'honneur</div><div class="reward-desc">Déguster 10 bières belges</div><div class="reward-progress">7 / 10 bières</div></div><div style="font-size:11px;color:var(--text3);">🔒</div></div>
+      <div class="reward-card"><div class="reward-icon" style="opacity:0.4;">🎖️</div><div style="flex:1;"><div class="reward-name">Ambassadeur</div><div class="reward-desc">3 contributions validées</div><div class="reward-progress">0 / 3 validations</div></div><div style="font-size:11px;color:var(--text3);">🔒</div></div>
+      <div class="reward-card"><div class="reward-icon" style="opacity:0.4;">🍹</div><div style="flex:1;"><div class="reward-name">Mixologue du Houblon</div><div class="reward-desc">Partager 1 cocktail à base de bière</div><div class="reward-progress">0 / 1 recette</div></div><div style="font-size:11px;color:var(--text3);">🔒</div></div>
+      <div class="spacer"></div>
+    </div>
+    <div class="nav-bar">
+      <button class="nav-item" onclick="go('s-home')"><div class="nav-icon-wrap"><span class="nav-icon">🏠</span></div><span class="nav-label">Accueil</span></button>
+      <button class="nav-item" onclick="go('s-catalogue')"><div class="nav-icon-wrap"><span class="nav-icon">📖</span></div><span class="nav-label">Catalogue</span></button>
+      <button class="nav-item" onclick="go('s-community')"><div class="nav-icon-wrap"><span class="nav-icon">🍴</span></div><span class="nav-label">Recettes</span></button>
+      <button class="nav-item active"><div class="nav-icon-wrap"><span class="nav-icon">🎖️</span></div><span class="nav-label">Badges</span></button>
+      <button class="nav-item" onclick="go('s-profile')"><div class="nav-icon-wrap"><span class="nav-icon">👤</span></div><span class="nav-label">Profil</span></button>
+    </div>
+  </div>
+
+  <!-- ════════════ PROFILE ════════════ -->
+  <div id="s-profile" class="screen">
+    <div class="foam-cloud"><svg viewBox="0 0 375 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><ellipse cx="40" cy="52" rx="48" ry="22" fill="var(--foam-c)"/><ellipse cx="90" cy="44" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="140" cy="50" rx="44" ry="20" fill="var(--foam-c)"/><ellipse cx="188" cy="42" rx="42" ry="28" fill="var(--foam-c2)"/><ellipse cx="240" cy="50" rx="40" ry="20" fill="var(--foam-c)"/><ellipse cx="292" cy="43" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="342" cy="50" rx="44" ry="22" fill="var(--foam-c)"/><rect x="0" y="46" width="375" height="10" fill="var(--foam-c2)"/></svg></div>
+    <div class="header"><div class="logo">Mon profil</div><div class="header-right"><button onclick="go('s-settings')" style="background:var(--bg3);border:0.5px solid var(--border);color:var(--text2);border-radius:var(--r-sm);padding:6px 10px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">⚙️</button></div></div>
+    <div class="content">
+      <div style="background:var(--bg2);border-radius:var(--r);border:0.5px solid var(--border);padding:15px;margin-bottom:12px;margin-top:4px;display:flex;align-items:center;gap:13px;"><div class="avatar">🍻</div><div style="flex:1;"><div style="font-size:16px;font-weight:500;color:var(--text);">Alexandre D.</div><div style="margin-top:4px;"><span class="level-badge">⚡ Niveau 3 · Houblonneur</span></div><div class="xp-bar-wrap" style="margin-top:8px;"><div class="xp-bar" style="width:78%;"></div></div><div style="font-size:10px;color:var(--text3);margin-top:3px;">1 170 / 1 500 XP → Niveau 4</div></div></div>
+      <div class="stat-grid"><div class="stat-card"><div class="stat-num">47</div><div class="stat-label">Bières scannées</div></div><div class="stat-card"><div class="stat-num">9</div><div class="stat-label">Pays explorés</div></div><div class="stat-card"><div class="stat-num">12</div><div class="stat-label">🥇 Médailles Or</div></div><div class="stat-card"><div class="stat-num">2</div><div class="stat-label">Contributions</div></div></div>
+      <div class="stitle">Badges obtenus</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;"><span class="medal gold" style="padding:6px 10px;font-size:11px;">🌍 Globe Trotter</span><span class="medal gold" style="padding:6px 10px;font-size:11px;">🥇 Chasseur de Médailles</span><span class="medal silver" style="padding:6px 10px;font-size:11px;">📝 Contributeur</span></div>
+      <div class="stitle">Mes favoris</div>
+      <div style="background:var(--bg2);border-radius:var(--r);border:0.5px solid var(--border);padding:0 14px;margin-bottom:12px;">
+        <div class="fav-mini" onclick="go('s-result')"><div style="font-size:22px;">🍺</div><div style="flex:1;"><div class="beer-name" style="font-size:13px;">Tripel Karmeliet</div><div class="beer-meta">Belgique · Tripel · 8.4%</div></div><span class="medal gold" style="font-size:10px;">🥇 WBA 2023</span></div>
+        <div class="fav-mini"><div style="font-size:22px;">🍺</div><div style="flex:1;"><div class="beer-name" style="font-size:13px;">Duvel</div><div class="beer-meta">Belgique · Golden Strong</div></div><span class="medal silver" style="font-size:10px;">🥈 BBC 2022</span></div>
+        <div class="fav-mini" style="border-bottom:none;"><div style="font-size:22px;">🍻</div><div style="flex:1;"><div class="beer-name" style="font-size:13px;">Weihenstephaner</div><div class="beer-meta">Allemagne · Hefeweizen</div></div><span class="medal gold" style="font-size:10px;">🥇 EBS 2022</span></div>
+      </div>
+      <div class="spacer"></div>
+    </div>
+    <div class="nav-bar">
+      <button class="nav-item" onclick="go('s-home')"><div class="nav-icon-wrap"><span class="nav-icon">🏠</span></div><span class="nav-label">Accueil</span></button>
+      <button class="nav-item" onclick="go('s-catalogue')"><div class="nav-icon-wrap"><span class="nav-icon">📖</span></div><span class="nav-label">Catalogue</span></button>
+      <button class="nav-item" onclick="go('s-community')"><div class="nav-icon-wrap"><span class="nav-icon">🍴</span></div><span class="nav-label">Recettes</span></button>
+      <button class="nav-item" onclick="go('s-badges')"><div class="nav-icon-wrap"><span class="nav-icon">🎖️</span></div><span class="nav-label">Badges</span></button>
+      <button class="nav-item active"><div class="nav-icon-wrap"><span class="nav-icon">👤</span></div><span class="nav-label">Profil</span></button>
+    </div>
+  </div>
+
+  <!-- ════════════ SETTINGS ════════════ -->
+  <div id="s-settings" class="screen">
+    <div class="foam-cloud"><svg viewBox="0 0 375 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><ellipse cx="40" cy="52" rx="48" ry="22" fill="var(--foam-c)"/><ellipse cx="90" cy="44" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="140" cy="50" rx="44" ry="20" fill="var(--foam-c)"/><ellipse cx="188" cy="42" rx="42" ry="28" fill="var(--foam-c2)"/><ellipse cx="240" cy="50" rx="40" ry="20" fill="var(--foam-c)"/><ellipse cx="292" cy="43" rx="38" ry="26" fill="var(--foam-c2)"/><ellipse cx="342" cy="50" rx="44" ry="22" fill="var(--foam-c)"/><rect x="0" y="46" width="375" height="10" fill="var(--foam-c2)"/></svg></div>
+    <div class="header"><button class="back-btn" onclick="go('s-profile')">←</button><div class="logo" style="margin-left:6px;">Paramètres</div></div>
+    <div class="content">
+
+      <!-- Theme picker — no dark -->
+      <div class="info-card" style="margin-top:6px;">
+        <div class="info-title">Robe de l'application</div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:12px;">Choisissez votre robe préférée !</div>
+        <div class="theme-row">
+          <div class="theme-swatch active" id="sw-blonde" style="background:linear-gradient(160deg,#4a3e2a,#2a2010);" onclick="setTheme('blonde','sw-blonde')">
+            <div class="swatch-foam" style="background:linear-gradient(90deg,transparent,rgba(255,252,220,0.4),transparent);"></div>
+            <div class="swatch-label" style="background:rgba(0,0,0,0.45);color:#f0c040;">🌾 Blonde</div>
+          </div>
+          <div class="theme-swatch" id="sw-rousse" style="background:linear-gradient(160deg,#3c2010,#1e0e08);" onclick="setTheme('rousse','sw-rousse')">
+            <div class="swatch-foam" style="background:linear-gradient(90deg,transparent,rgba(255,210,160,0.38),transparent);"></div>
+            <div class="swatch-label" style="background:rgba(0,0,0,0.45);color:#f07030;">🍂 Rousse</div>
+          </div>
+          <div class="theme-swatch" id="sw-brune" style="background:linear-gradient(160deg,#30241c,#120c08);" onclick="setTheme('brune','sw-brune')">
+            <div class="swatch-foam" style="background:linear-gradient(90deg,transparent,rgba(240,210,170,0.32),transparent);"></div>
+            <div class="swatch-label" style="background:rgba(0,0,0,0.45);color:#b06030;">🍫 Brune</div>
+          </div>
+          <div class="theme-swatch" id="sw-ipa" style="background:linear-gradient(160deg,#243820,#0d1a12);" onclick="setTheme('ipa','sw-ipa')">
+            <div class="swatch-foam" style="background:linear-gradient(90deg,transparent,rgba(180,255,140,0.32),transparent);"></div>
+            <div class="swatch-label" style="background:rgba(0,0,0,0.45);color:#8cdf6c;">🌿 IPA</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language -->
+      <div class="info-card">
+        <div class="info-title">Langue</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="lang-btn active" id="lang-fr" onclick="setLang('fr')">🇫🇷 Français</button>
+          <button class="lang-btn" id="lang-en" onclick="setLang('en')">🇬🇧 English</button>
+          <button class="lang-btn" id="lang-de" onclick="setLang('de')">🇩🇪 Deutsch</button>
+          <button class="lang-btn" id="lang-es" onclick="setLang('es')">🇪🇸 Español</button>
+          <button class="lang-btn" id="lang-nl" onclick="setLang('nl')">🇳🇱 Nederlands</button>
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div class="info-card">
+        <div class="info-title">Notifications</div>
+        <div class="setting-row"><div><div class="setting-label">Nouveaux concours</div><div class="setting-sub">Alertes palmarès mondiaux</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="setting-row"><div><div class="setting-label">Bières proches de moi</div><div class="setting-sub">Bars et caves à proximité</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="setting-row"><div><div class="setting-label">Validation contributions</div><div class="setting-sub">Quand ma bière est vérifiée</div></div><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+      </div>
+
+      <!-- Privacy -->
+      <div class="info-card">
+        <div class="info-title">Confidentialité</div>
+        <div class="setting-row"><div><div class="setting-label">Profil public</div><div class="setting-sub">Visible par la communauté</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="setting-row"><div><div class="setting-label">Partager historique</div><div class="setting-sub">Visible dans les avis</div></div><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+      </div>
+
+      <div class="spacer"></div>
+    </div>
+    <div class="nav-bar">
+      <button class="nav-item" onclick="go('s-home')"><div class="nav-icon-wrap"><span class="nav-icon">🏠</span></div><span class="nav-label">Accueil</span></button>
+      <button class="nav-item" onclick="go('s-catalogue')"><div class="nav-icon-wrap"><span class="nav-icon">📖</span></div><span class="nav-label">Catalogue</span></button>
+      <button class="nav-item" onclick="go('s-community')"><div class="nav-icon-wrap"><span class="nav-icon">🍴</span></div><span class="nav-label">Recettes</span></button>
+      <button class="nav-item" onclick="go('s-badges')"><div class="nav-icon-wrap"><span class="nav-icon">🎖️</span></div><span class="nav-label">Badges</span></button>
+      <button class="nav-item active" onclick="go('s-profile')"><div class="nav-icon-wrap"><span class="nav-icon">👤</span></div><span class="nav-label">Profil</span></button>
+    </div>
+  </div>
+
+</div><!-- /phone -->
+
+<script src="js/script.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => console.log('SW error:', err));
+  });
+}
+</script>
+</body>
+</html>
