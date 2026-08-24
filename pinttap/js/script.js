@@ -139,7 +139,7 @@ function fileToBase64(file) {
 // APPEL AU WORKER (qui appelle Claude Vision côté serveur)
 // ═══════════════════════════════════════════════════════
 async function analyzeBeerLabel(base64, mediaType) {
-  const res = await fetch(WORKER_URL, {
+  const res = await fetch(https://broken-cloud-d869.thibault3094.workers.dev/, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ image: base64, mediaType }),
