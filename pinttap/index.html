@@ -108,8 +108,8 @@
     <div class="content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;">
       <div class="viewfinder"><div class="vf-c vf-tl"></div><div class="vf-c vf-tr"></div><div class="vf-c vf-bl"></div><div class="vf-c vf-br"></div><div class="scan-lbl">Centrez l'étiquette</div><div style="font-size:46px;">🍺</div></div>
       <div style="text-align:center;font-size:13px;color:var(--text2);">Bouteille, cannette ou pommeau de pression<br>L'IA reconnaît aussi les médailles sur l'étiquette</div>
-      <button class="cta-btn" style="max-width:260px;" onclick="go('s-analyzing')">📸 Prendre une photo</button>
-      <button class="outline-btn" style="max-width:260px;" onclick="go('s-analyzing')">Depuis la galerie</button>
+      <button class="cta-btn" style="max-width:260px;" onclick="openCamera(false)">📸 Prendre une photo</button>
+      <button class="outline-btn" style="max-width:260px;" onclick="openCamera(true)">Depuis la galerie</button>
     </div>
     <div class="nav-bar">
       <button class="nav-item" onclick="go('s-home')"><div class="nav-icon-wrap"><span class="nav-icon">🏠</span></div><span class="nav-label">Accueil</span></button>
@@ -146,8 +146,8 @@
       <div class="info-card" style="margin-top:6px;">
         <div style="display:flex;gap:13px;align-items:flex-start;">
           <div style="font-size:46px;">🍺</div>
-          <div style="flex:1;"><div class="big-name">Tripel Karmeliet</div><div class="origin-text">Brouwerij Bosteels · Buggenhout, Belgique</div>
-          <div class="tags"><span class="tag">Tripel</span><span class="tag">8.4% ABV</span><span class="tag">Blonde</span><span class="tag">33 IBU</span></div></div>
+          <div style="flex:1;"><div class="big-name" id="res-name">Tripel Karmeliet</div><div class="origin-text" id="res-origin">...</div>
+          <div class="tags" id="res-tags"><span class="tag">Tripel</span><span class="tag">8.4% ABV</span><span class="tag">Blonde</span><span class="tag">33 IBU</span></div></div>
         </div>
       </div>
       <div class="info-card">
@@ -172,9 +172,9 @@
       <div class="contest-item"><div class="contest-logo">🏆</div><div style="flex:1;"><div class="contest-name">World Beer Awards</div><div class="contest-year">Catégorie Tripel · 2023</div></div><span class="medal gold">🥇 Or</span></div>
       <div class="contest-item"><div class="contest-logo">🌍</div><div style="flex:1;"><div class="contest-name">Brussels Beer Challenge</div><div class="contest-year">Bière belge d'exception · 2022</div></div><span class="medal gold">🥇 Or</span></div>
       <div class="contest-item"><div class="contest-logo">🇫🇷</div><div style="flex:1;"><div class="contest-name">BAC France</div><div class="contest-year">Bières blondes fortes · 2023</div></div><span class="medal silver">🥈 Argent</span></div>
-      <div class="info-card" style="margin-top:4px;"><div class="info-title">Description</div><div class="info-text">Brassée avec trois céréales — froment, avoine et orge. Nez complexe de fruits, d'épices et de levure, avec une finale longue et élégante. Référence mondiale du style Tripel.</div></div>
-      <div class="info-card"><div class="info-title">Accompagnements idéaux</div><div class="chips"><span class="chip">Fromages affinés</span><span class="chip">Moules</span><span class="chip">Porc rôti</span><span class="chip">Dessert citron</span></div></div>
-      <div class="info-card"><div class="info-title">Service & dégustation</div><div class="info-text">Servir à 6–8°C dans un verre à calice. Idéale en apéritif ou repas festif. Laisser 1 min après le service.</div></div>
+      <div class="info-card" style="margin-top:4px;"><div class="info-title">Description</div><div class="info-text">Brassée avec trois céréales — froment, avoine et orge. Nez complexe de fruits, d'épices et de levure, avec une finale longue et élégante. Référence mondiale du style Tripel.</div>id="res-description"</div>
+      <div class="info-card"><div class="info-title">Accompagnements idéaux</div><div class="chips"><span class="chip">Fromages affinés</span><span class="chip">Moules</span><span class="chip">Porc rôti</span><span class="chip">Dessert citron</span></div>id="res-pairings"</div>
+      <div class="info-card"><div class="info-title">Service & dégustation</div><div class="info-text">Servir à 6–8°C dans un verre à calice. Idéale en apéritif ou repas festif. Laisser 1 min après le service.</div>id="res-serving"</div>
       <div class="info-card"><div class="info-title">Ordre de dégustation suggéré</div><div class="order-item"><div class="order-num">1</div><div class="order-name">Weihenstephaner (légère)</div></div><div class="order-item"><div class="order-num" style="background:var(--accent-dim);color:var(--accent-l);">2</div><div class="order-name order-active">Tripel Karmeliet ← vous êtes ici</div></div><div class="order-item"><div class="order-num">3</div><div class="order-name">Westvleteren 12 (intense)</div></div></div>
       <div class="info-card"><div class="info-title">Avis de la communauté</div><div class="review-item"><div class="review-user">Antoine M. 🥇 Ambassadeur</div><div class="review-text">Absolument divine. La complexité aromatique est incroyable pour une bière de cette force.</div></div><div class="review-item"><div class="review-user">Sarah K. ⚡ Houblonneur</div><div class="review-text">Une des meilleures tripels. Parfaite avec un fromage de caractère.</div></div></div>
       <div class="spacer"></div>
@@ -421,6 +421,7 @@
     </div>
   </div>
 
+<input type="file" id="camera-input" accept="image/*" style="display:none" onchange="handlePhotoSelected(event)">
 </div><!-- /phone -->
 
 <script src="js/script.js"></script>
