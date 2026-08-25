@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pinttap-cache-v1';
+const CACHE_NAME = 'pinttap-cache-v2';
 const FILES_TO_CACHE = [
   'index.html',
   'css/style.css',
