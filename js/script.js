@@ -1,7 +1,7 @@
 // ═══════════════════════════════════════════════════════
 // CONFIG — à remplir après déploiement du Worker Cloudflare
 // ═══════════════════════════════════════════════════════
-const WORKER_URL = 'https://TON-WORKER.TON-SOUS-DOMAINE.workers.dev'; // ⚠️ remplace par ton URL réelle
+const WORKER_URL = 'https://pinttap-worker.thibault3094.workers.dev'; // ⚠️ remplace par ton URL réelle
 const BREWERY_DB_URL = 'https://api.openbrewerydb.org/v1/breweries/search';
 
 // ═══════════════════════════════════════════════════════
